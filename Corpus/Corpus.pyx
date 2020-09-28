@@ -1,20 +1,10 @@
-from DataStructure.CounterHashMap cimport CounterHashMap
-from Dictionary.Word cimport Word
-
 from Corpus.LanguageChecker cimport LanguageChecker
-from Corpus.Paragraph cimport Paragraph
-from Corpus.Sentence cimport Sentence
 from Corpus.SentenceSplitter cimport SentenceSplitter
 
 import random
 
 
 cdef class Corpus:
-
-    cdef list paragraphs
-    cdef list sentences
-    cdef CounterHashMap wordList
-    cdef str fileName
 
     def __init__(self, fileName=None, splitterOrChecker=None):
         """

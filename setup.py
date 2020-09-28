@@ -5,7 +5,7 @@ setup(
     ext_modules=cythonize(["Corpus/*.pyx"],
                           compiler_directives={'language_level': "3"}),
     name='NlpToolkit-Corpus-Cy',
-    version='1.0.0',
+    version='1.0.1',
     packages=['Corpus'],
     package_data={'Corpus': ['*.pxd', '*.pyx', '*.c']},
     url='https://github.com/olcaytaner/Corpus-Cy',
