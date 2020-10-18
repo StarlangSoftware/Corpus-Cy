@@ -3,9 +3,6 @@ from os.path import isfile
 
 cdef class FileDescription:
 
-    cdef str __path, __extension
-    cdef int __index
-
     def __init__(self, path: str, extensionOrFileName: str, index: int = None):
         self.__path = path
         if index is None:
