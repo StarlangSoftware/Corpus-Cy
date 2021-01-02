@@ -8,7 +8,7 @@ setup(
     version='1.0.3',
     packages=['Corpus'],
     package_data={'Corpus': ['*.pxd', '*.pyx', '*.c', '*.py']},
-    url='https://github.com/olcaytaner/Corpus-Cy',
+    url='https://github.com/StarlangSoftware/Corpus-Cy',
     license='',
     author='olcaytaner',
     author_email='olcay.yildiz@ozyegin.edu.tr',
