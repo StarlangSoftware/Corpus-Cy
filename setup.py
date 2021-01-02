@@ -11,7 +11,7 @@ setup(
     url='https://github.com/olcaytaner/Corpus-Cy',
     license='',
     author='olcaytaner',
-    author_email='olcaytaner@isikun.edu.tr',
+    author_email='olcay.yildiz@ozyegin.edu.tr',
     description='Corpus library',
     install_requires=['NlpToolkit-Dictionary-Cy']
 )
