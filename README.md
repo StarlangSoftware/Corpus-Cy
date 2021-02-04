@@ -28,7 +28,7 @@ Use Git for cloning the code to your local or below line for Ubuntu:
 
 A directory called Corpus will be created. Or you can use below link for exploring the code:
 
-	git clone https://github.com/olcaytaner/Corpus-Py.git
+	git clone https://github.com/olcaytaner/Corpus-Cy.git
 
 ## Open project with Pycharm IDE
 
@@ -36,6 +36,36 @@ Steps for opening the cloned project:
 
 * Start IDE
 * Select **File | Open** from main menu
-* Choose `Corpus-Py` file
+* Choose `Corpus-Cy` file
 * Select open as project option
 * Couple of seconds, dependencies will be downloaded. 
+
+Detailed Description
+============
+
++ [Corpus](#corpus)
++ [TurkishSplitter](#turkishsplitter)
+
+## Corpus
+
+To store a corpus in memory
+
+	a = Corpus("derlem.txt")
+
+If this corpus is split with dots but not in sentences
+
+	Corpus(self, fileName=None, splitterOrChecker=None)
+
+The number of sentences in the corpus
+
+	sentenceCount(self) -> int
+
+To get ith sentence in the corpus
+
+	getSentence(self, index: int) -> Sentence
+
+## TurkishSplitter
+
+TurkishSplitter class is used to split the text into sentences in accordance with the . rules of Turkish.
+
+	split(self, line: str) -> list
