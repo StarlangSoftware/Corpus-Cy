@@ -153,6 +153,20 @@ cdef class Sentence:
             total += word.charCount()
         return total
 
+    cpdef insertWord(self, int i, Word newWord):
+        """
+        The insertWord method takes an index and a word as inputs. It inserts the word at given index to words
+        list.
+
+        PARAMETERS
+        ----------
+        i : int
+            index.
+        newWord : Word
+            to add the words list.
+        """
+        self.words.insert(i, newWord)
+
     cpdef replaceWord(self, int i, Word newWord):
         """
         The replaceWord method takes an index and a word as inputs. It removes the word at given index from words

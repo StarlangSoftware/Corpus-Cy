@@ -12,6 +12,7 @@ cdef class Sentence:
     cpdef int wordCount(self)
     cpdef addWord(self, Word word)
     cpdef int charCount(self)
+    cpdef insertWord(self, int i, Word newWord)
     cpdef replaceWord(self, int i, Word newWord)
     cpdef bint safeIndex(self, int index)
     cpdef str toString(self)
