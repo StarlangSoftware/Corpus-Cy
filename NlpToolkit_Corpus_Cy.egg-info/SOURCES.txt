@@ -3,6 +3,9 @@ setup.py
 Corpus/Corpus.c
 Corpus/Corpus.pxd
 Corpus/Corpus.pyx
+Corpus/EnglishSplitter.c
+Corpus/EnglishSplitter.pxd
+Corpus/EnglishSplitter.pyx
 Corpus/FileDescription.c
 Corpus/FileDescription.pxd
 Corpus/FileDescription.pyx
@@ -21,6 +24,7 @@ Corpus/SentenceSplitter.pyx
 Corpus/TurkishChecker.c
 Corpus/TurkishChecker.pyx
 Corpus/TurkishSplitter.c
+Corpus/TurkishSplitter.pxd
 Corpus/TurkishSplitter.pyx
 Corpus/WordFormat.py
 Corpus/__init__.py
