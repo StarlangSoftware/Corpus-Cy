@@ -46,5 +46,6 @@ class CorpusTest(unittest.TestCase):
         self.assertEqual(1092, self.corpus.maxSentenceLength())
         self.assertEqual(6, self.simpleCorpus.maxSentenceLength())
 
+
 if __name__ == '__main__':
     unittest.main()
