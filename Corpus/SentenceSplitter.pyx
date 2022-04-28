@@ -199,7 +199,7 @@ cdef class SentenceSplitter:
         cdef Py_UNICODE previousChar, nextChar
         apostropheLetters = self.upperCaseLetters() + self.lowerCaseLetters() + Language.EXTENDED_LANGUAGE_CHARACTERS \
                             + Language.DIGITS
-        if i + 1 < len(line):
+        if i > 0 and i + 1 < len(line):
             previousChar = line[i - 1]
             nextChar = line[i + 1]
             return previousChar in apostropheLetters and nextChar in apostropheLetters
@@ -225,7 +225,7 @@ cdef class SentenceSplitter:
             True if previous char and next char is a digit, False otherwise.
         """
         cdef Py_UNICODE previousChar, nextChar
-        if i + 1 < len(line) and i > 0:
+        if i > 0 and i + 1 < len(line):
             previousChar = line[i - 1]
             nextChar = line[i + 1]
             return previousChar in Language.DIGITS and nextChar in Language.DIGITS
@@ -251,7 +251,7 @@ cdef class SentenceSplitter:
             True if previous char, next char and two next chars are digit, False otherwise.
         """
         cdef Py_UNICODE previousChar, nextChar, twoNextChar
-        if i + 2 < len(line):
+        if i > 0 and i + 2 < len(line):
             previousChar = line[i - 1]
             nextChar = line[i + 1]
             twoNextChar = line[i + 2]
