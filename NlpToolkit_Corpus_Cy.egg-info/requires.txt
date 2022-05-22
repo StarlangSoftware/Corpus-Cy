@@ -1,1 +1,2 @@
 NlpToolkit-Dictionary-Cy
+NlpToolkit-DataStructure-Cy
