@@ -6,9 +6,9 @@ import re
 
 cdef class SentenceSplitter:
 
-    SEPARATORS = "\n()[]{}\"'\u05F4\uFF02\u055B"
+    SEPARATORS = "\n()[]{}\"'\u05F4\uFF02\u055B’”‘“–­​	&  ﻿"
     SENTENCE_ENDERS = ".?!…"
-    PUNCTUATION_CHARACTERS = ",:;"
+    PUNCTUATION_CHARACTERS = ",:;‚"
 
     cpdef str upperCaseLetters(self):
         pass
@@ -348,6 +348,14 @@ cdef class SentenceSplitter:
                         specialQuotaCount = specialQuotaCount + 1
                     elif line[i] == '\u05F4':
                         specialQuotaCount = specialQuotaCount - 1
+                    elif line[i] == '“':
+                        specialQuotaCount = specialQuotaCount + 1
+                    elif line[i] == '”':
+                        specialQuotaCount = specialQuotaCount - 1
+                    elif line[i] == '‘':
+                        specialQuotaCount = specialQuotaCount + 1
+                    elif line[i] == '’':
+                        specialQuotaCount = specialQuotaCount - 1
                     elif line[i] == '(':
                         roundParenthesisCount = roundParenthesisCount + 1
                     elif line[i] == ')':
@@ -367,11 +375,13 @@ cdef class SentenceSplitter:
                         currentSentence = Sentence()
             else:
                 if line[i] in SentenceSplitter.SENTENCE_ENDERS:
-                    if line[i] == '.' and currentWord == "www":
+                    if line[i] == '.' and currentWord.lower() == "www":
                         webMode = True
                     if line[i] == '.' and currentWord != "" and (
                             webMode or emailMode or (line[i - 1] in Language.DIGITS and not self.__isNextCharUpperCaseOrDigit(line, i + 1))):
                         currentWord = currentWord + line[i]
+                        currentSentence.addWord(Word(currentWord))
+                        currentWord = ""
                     else:
                         if line[i] == '.' and (self.__listContains(currentWord) or self.__isNameShortcut(currentWord)):
                             currentWord = currentWord + line[i]
