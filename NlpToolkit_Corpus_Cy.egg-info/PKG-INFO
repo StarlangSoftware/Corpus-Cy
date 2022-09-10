@@ -1,12 +1,10 @@
 Metadata-Version: 2.1
 Name: NlpToolkit-Corpus-Cy
-Version: 1.0.12
+Version: 1.0.14
 Summary: Corpus library
 Home-page: https://github.com/StarlangSoftware/Corpus-Cy
 Author: olcaytaner
 Author-email: olcay.yildiz@ozyegin.edu.tr
-License: UNKNOWN
-Platform: UNKNOWN
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
@@ -93,5 +91,3 @@ To get ith sentence in the corpus
 TurkishSplitter class is used to split the text into sentences in accordance with the . rules of Turkish.
 
 	split(self, line: str) -> list
-
-
