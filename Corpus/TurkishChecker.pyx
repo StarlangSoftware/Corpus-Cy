@@ -31,14 +31,14 @@ cdef class TurkishChecker(LanguageChecker):
         bool
             True if each char in word is valid, False otherwise.
         """
-        cdef str specialMeaningCharacters, validCharacters
+        cdef str special_meaning_characters, valid_characters
         cdef int i
-        specialMeaningCharacters = "$\\_|@%#£§&><"
-        validCharacters = TurkishLanguage.LETTERS + TurkishLanguage.EXTENDED_LANGUAGE_CHARACTERS + \
-                          TurkishLanguage.DIGITS + SentenceSplitter.SEPARATORS + SentenceSplitter.SENTENCE_ENDERS + \
-                          TurkishLanguage.ARITHMETIC_CHARACTERS + SentenceSplitter.PUNCTUATION_CHARACTERS + \
-                          specialMeaningCharacters
+        special_meaning_characters = "$\\_|@%#£§&><"
+        valid_characters = TurkishLanguage.LETTERS + TurkishLanguage.EXTENDED_LANGUAGE_CHARACTERS + \
+                           TurkishLanguage.DIGITS + SentenceSplitter.SEPARATORS + SentenceSplitter.SENTENCE_ENDERS + \
+                           TurkishLanguage.ARITHMETIC_CHARACTERS + SentenceSplitter.PUNCTUATION_CHARACTERS + \
+                           special_meaning_characters
         for i in range(len(word)):
-            if word[i] not in validCharacters:
+            if word[i] not in valid_characters:
                 return False
         return True

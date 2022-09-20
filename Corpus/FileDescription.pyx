@@ -3,7 +3,10 @@ from os.path import isfile
 
 cdef class FileDescription:
 
-    def __init__(self, path: str, extensionOrFileName: str, index: int = None):
+    def __init__(self,
+                 path: str,
+                 extensionOrFileName: str,
+                 index: int = None):
         self.__path = path
         if index is None:
             self.__extension = extensionOrFileName[extensionOrFileName.rindex('.') + 1:]
@@ -21,7 +24,9 @@ cdef class FileDescription:
     cpdef str getExtension(self):
         return self.__extension
 
-    cpdef str getFileName(self, thisPath=None, extension=None):
+    cpdef str getFileName(self,
+                          thisPath=None,
+                          extension=None):
         if thisPath is None:
             thisPath = self.__path
         return self.getFileNameWithIndex(thisPath, self.__index, extension)
@@ -29,7 +34,10 @@ cdef class FileDescription:
     cpdef str getFileNameWithExtension(self, str extension):
         return self.getFileName(self.__path, extension)
 
-    cpdef str getFileNameWithIndex(self, str thisPath, int index, extension=None):
+    cpdef str getFileNameWithIndex(self,
+                                   str thisPath,
+                                   int index,
+                                   extension=None):
         if extension is None:
             extension = self.__extension
         return "%s/%04d.%s" % (thisPath, index, extension)
@@ -40,12 +48,19 @@ cdef class FileDescription:
     cpdef addToIndex(self, int count):
         self.__index += count
 
-    cpdef nextFileExists(self, int count, thisPath=None):
+    cpdef nextFileExists(self,
+                         int count,
+                         thisPath=None):
         if thisPath is None:
             thisPath = self.__path
         return isfile(self.getFileNameWithIndex(thisPath, self.__index + count))
 
-    cpdef previousFileExists(self, int count, thisPath=None):
+    cpdef previousFileExists(self,
+                             int count,
+                             thisPath=None):
         if thisPath is None:
             thisPath = self.__path
         return isfile(self.getFileNameWithIndex(thisPath, self.__index - count))
+
+    def __repr__(self):
+        return f"{self.__path} {self.__index}.{self.__extension}"

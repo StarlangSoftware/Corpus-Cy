@@ -5,7 +5,9 @@ from Corpus.LanguageChecker cimport LanguageChecker
 
 cdef class Sentence:
 
-    def __init__(self, fileOrStr=None, languageChecker: LanguageChecker = None):
+    def __init__(self,
+                 fileOrStr=None,
+                 languageChecker: LanguageChecker = None):
         """
         Another constructor of Sentence class which takes a fileName as an input. It reads each word in the file
         and adds to words list.
@@ -16,18 +18,18 @@ cdef class Sentence:
             input file to read words from.
         """
         cdef str line, word
-        cdef list wordArray, lines
+        cdef list word_array, lines
         self.words = []
         if isinstance(fileOrStr, io.StringIO):
             lines = fileOrStr.readlines()
             for line in lines:
-                wordList = line.split(" ")
-                for word in wordList:
+                word_list = line.split(" ")
+                for word in word_list:
                     self.words.append(Word(word))
             fileOrStr.close()
         elif isinstance(fileOrStr, str):
-            wordArray = fileOrStr.split(" ")
-            for word in wordArray:
+            word_array = fileOrStr.split(" ")
+            for word in word_array:
                 if len(word) > 0:
                     if languageChecker is None or languageChecker.isValidWord(word):
                         self.words.append(Word(word))
@@ -153,7 +155,9 @@ cdef class Sentence:
             total += word.charCount()
         return total
 
-    cpdef insertWord(self, int i, Word newWord):
+    cpdef insertWord(self,
+                     int i,
+                     Word newWord):
         """
         The insertWord method takes an index and a word as inputs. It inserts the word at given index to words
         list.
@@ -167,7 +171,9 @@ cdef class Sentence:
         """
         self.words.insert(i, newWord)
 
-    cpdef replaceWord(self, int i, Word newWord):
+    cpdef replaceWord(self,
+                      int i,
+                      Word newWord):
         """
         The replaceWord method takes an index and a word as inputs. It removes the word at given index from words
         list and then adds the given word to given index of words.
@@ -244,6 +250,9 @@ cdef class Sentence:
         fileName : str
             file to write in.
         """
-        outFile = open(fileName, "w", encoding="utf8")
-        outFile.write(self.__str__() + "\n")
-        outFile.close()
+        out_file = open(fileName, "w", encoding="utf8")
+        out_file.write(self.__str__() + "\n")
+        out_file.close()
+
+    def __repr__(self):
+        return f"{self.words}"
