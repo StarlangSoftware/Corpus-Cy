@@ -4,6 +4,9 @@ setup.py
 Corpus/Corpus.c
 Corpus/Corpus.pxd
 Corpus/Corpus.pyx
+Corpus/CorpusStream.c
+Corpus/CorpusStream.pxd
+Corpus/CorpusStream.pyx
 Corpus/EnglishSplitter.c
 Corpus/EnglishSplitter.pxd
 Corpus/EnglishSplitter.pyx
