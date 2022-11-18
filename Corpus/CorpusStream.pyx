@@ -15,7 +15,7 @@ cdef class CorpusStream(AbstractCorpus):
         cdef str line
         line = self.file.readline()
         if line:
-            return Sentence(line)
+            return Sentence(line.strip())
         else:
             return None
 
@@ -26,7 +26,7 @@ cdef class CorpusStream(AbstractCorpus):
         for i in range(lineCount):
             line = self.file.readline()
             if line:
-                sentences.append(Sentence(line))
+                sentences.append(Sentence(line.strip()))
             else:
                 break
         return sentences
