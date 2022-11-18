@@ -1,6 +1,9 @@
 LICENSE
 README.md
 setup.py
+Corpus/AbstractCorpus.c
+Corpus/AbstractCorpus.pxd
+Corpus/AbstractCorpus.pyx
 Corpus/Corpus.c
 Corpus/Corpus.pxd
 Corpus/Corpus.pyx

@@ -1,11 +1,11 @@
+from Corpus.AbstractCorpus cimport AbstractCorpus
 from Corpus.Sentence cimport Sentence
 
-cdef class CorpusStream:
+cdef class CorpusStream(AbstractCorpus):
 
-    cdef str file_name
     cdef object file
 
     cpdef open(self)
     cpdef close(self)
-    cpdef Sentence getSentence(self)
+    cpdef Sentence getNextSentence(self)
     cpdef list getSentenceBatch(self, int lineCount)

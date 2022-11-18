@@ -1,4 +1,6 @@
-cdef class CorpusStream:
+from Corpus.AbstractCorpus cimport AbstractCorpus
+
+cdef class CorpusStream(AbstractCorpus):
 
     def __init__(self, fileName=None):
         self.file_name = fileName
@@ -9,7 +11,7 @@ cdef class CorpusStream:
     cpdef close(self):
         self.file.close()
 
-    cpdef Sentence getSentence(self):
+    cpdef Sentence getNextSentence(self):
         cdef str line
         line = self.file.readline()
         if line:

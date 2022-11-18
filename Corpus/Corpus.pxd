@@ -1,15 +1,17 @@
 from DataStructure.CounterHashMap cimport CounterHashMap
+
+from Corpus.AbstractCorpus cimport AbstractCorpus
 from Corpus.Paragraph cimport Paragraph
 from Corpus.Sentence cimport Sentence
 from Dictionary.Word cimport Word
 
 
-cdef class Corpus:
+cdef class Corpus(AbstractCorpus):
 
     cdef list paragraphs
     cdef list sentences
-    cdef CounterHashMap wordList
-    cdef str fileName
+    cdef CounterHashMap word_list
+    cdef int sentence_index
 
     cpdef combine(self, Corpus corpus)
     cpdef addSentence(self, Sentence s)
@@ -29,3 +31,6 @@ cdef class Corpus:
     cpdef shuffleSentences(self, int seed)
     cpdef Corpus getTrainCorpus(self, int foldNo, int foldCount)
     cpdef Corpus getTestCorpus(self, int foldNo, int foldCount)
+    cpdef open(self)
+    cpdef close(self)
+    cpdef Sentence getNextSentence(self)

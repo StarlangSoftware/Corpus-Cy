@@ -4,7 +4,7 @@ from Corpus.SentenceSplitter cimport SentenceSplitter
 import random
 
 
-cdef class Corpus:
+cdef class Corpus(AbstractCorpus):
 
     def __init__(self,
                  fileName=None,
@@ -24,10 +24,11 @@ cdef class Corpus:
         cdef Sentence sentence
         self.sentences = []
         self.paragraphs = []
-        self.wordList = CounterHashMap()
+        self.word_list = CounterHashMap()
+        self.sentence_index = 0
         if fileName is not None:
-            self.fileName = fileName
-            file = open(fileName, "r", encoding='utf8')
+            self.file_name = fileName
+            file = open(self.file_name, "r", encoding='utf8')
             lines = file.readlines()
             file.close()
             if splitterOrChecker is not None:
@@ -75,7 +76,7 @@ cdef class Corpus:
         self.sentences.append(s)
         for i in range(s.wordCount()):
             w = s.getWord(i)
-            self.wordList.put(w)
+            self.word_list.put(w)
 
     cpdef int numberOfWords(self):
         """
@@ -108,7 +109,7 @@ cdef class Corpus:
         bool
             True if wordList has the given word, False otherwise.
         """
-        return Word(word) in self.wordList
+        return Word(word) in self.word_list
 
     cpdef addParagraph(self, Paragraph p):
         """
@@ -134,7 +135,7 @@ cdef class Corpus:
         str
             file name.
         """
-        return self.fileName
+        return self.file_name
 
     cpdef set getWordList(self):
         """
@@ -145,7 +146,7 @@ cdef class Corpus:
         set
             The keySet of wordList.
         """
-        return set(self.wordList.keys())
+        return set(self.word_list.keys())
 
     cpdef int wordCount(self):
         """
@@ -156,7 +157,7 @@ cdef class Corpus:
         int
             The size of the wordList CounterHashMap.
         """
-        return len(self.wordList)
+        return len(self.word_list)
 
     cpdef int getCount(self, Word word):
         """
@@ -172,7 +173,7 @@ cdef class Corpus:
         int
             The count value of given word.
         """
-        return self.wordList[word]
+        return self.word_list[word]
 
     cpdef int sentenceCount(self):
         """
@@ -337,3 +338,18 @@ cdef class Corpus:
 
     def __repr__(self):
         return f"{self.sentences}"
+
+    cpdef open(self):
+        self.sentence_index = 0
+
+    cpdef close(self):
+        self.sentence_index = 0
+
+    cpdef Sentence getNextSentence(self):
+        cdef int index
+        index = self.sentence_index
+        if self.sentence_index < len(self.sentences):
+            self.sentence_index = self.sentence_index + 1
+            return self.sentences[index]
+        else:
+            return None
