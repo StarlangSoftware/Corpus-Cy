@@ -1,6 +1,6 @@
 from Corpus.Sentence cimport Sentence
 
-cdef class AbstractCorpus:
+cdef class AbstractCorpus(object):
 
     cdef str file_name
 

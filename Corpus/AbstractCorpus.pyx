@@ -1,4 +1,4 @@
-cdef class AbstractCorpus:
+cdef class AbstractCorpus(object):
 
     cpdef open(self):
         pass
