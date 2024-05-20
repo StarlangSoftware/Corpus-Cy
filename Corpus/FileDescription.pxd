@@ -13,3 +13,6 @@ cdef class FileDescription:
     cpdef addToIndex(self, int count)
     cpdef nextFileExists(self, int count, thisPath=*)
     cpdef previousFileExists(self, int count, thisPath=*)
+    cpdef constructor1(self, str path, str fileName)
+
+    cpdef constructor2(self, str path, str extension, int index)

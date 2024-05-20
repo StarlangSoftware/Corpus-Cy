@@ -3,12 +3,24 @@ from Language.TurkishLanguage cimport TurkishLanguage
 cdef class TurkishSplitter(SentenceSplitter):
 
     cpdef str upperCaseLetters(self):
+        """
+        Returns Turkish UPPERCASE letters.
+        :return: Turkish UPPERCASE letters.
+        """
         return TurkishLanguage.UPPERCASE_LETTERS
 
     cpdef str lowerCaseLetters(self):
+        """
+        Returns Turkish LOWERCASE letters.
+        :return: Turkish LOWERCASE letters.
+        """
         return TurkishLanguage.LOWERCASE_LETTERS
 
     cpdef list shortCuts(self):
+        """
+        Returns shortcut words in Turkish language.
+        :return: Shortcut words in Turkish language.
+        """
         return ["alb", "bnb", "bkz", "bşk", "co", "dr", "dç", "der", "em", "gn",
                 "hz", "kd", "kur", "kuv", "ltd", "md", "mr", "mö", "muh", "müh",
                 "no", "öğr", "op", "opr", "org", "sf", "tuğ", "uzm", "vb", "vd",
