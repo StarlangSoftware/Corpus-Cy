@@ -6,10 +6,11 @@ import re
 
 cdef class SentenceSplitter:
 
-    SEPARATORS = "\n()[]{}\"'\u05F4\uFF02\u055B’”‘“–­​	&  ﻿"
+    SEPARATORS = "\n()[]{}\"'\u05F4\uFF02\u055B’”‘“-–—­​	&  ﻿"
     SENTENCE_ENDERS = ".?!…"
     PUNCTUATION_CHARACTERS = ",:;‚"
     APOSTROPHES = "'’‘\u055B"
+    HYPHENS = "-–—"
 
     cpdef str upperCaseLetters(self):
         pass
@@ -178,7 +179,7 @@ cdef class SentenceSplitter:
         i = 0
         result = ""
         while i < len(word):
-            if i < len(word) - 2 and word[i] == word[i + 1] and word[i] == word[i + 2]:
+            if i < len(word) - 3 and word[i] == word[i + 1] and word[i] == word[i + 2] and word[i] == word[i + 3]:
                 while i < len(word) - 1 and word[i] == word[i + 1]:
                     i = i + 1
             result = result + word[i]
@@ -275,6 +276,18 @@ cdef class SentenceSplitter:
         else:
             return False
 
+    cpdef bint __onlyOneLetterExistsBeforeOrAfter(self, str line, int i):
+        if i > 1 and i + 1 < len(line) - 2:
+            return line[i - 2] in SentenceSplitter.PUNCTUATION_CHARACTERS or line[i - 2] in SentenceSplitter.SEPARATORS \
+        or line[i - 2] == ' ' or line[i - 2] in SentenceSplitter.SENTENCE_ENDERS or line[i + 2] in SentenceSplitter.PUNCTUATION_CHARACTERS \
+        or line[i + 2] in SentenceSplitter.SEPARATORS or line[i + 2] == ' ' or line[i + 2] in SentenceSplitter.SENTENCE_ENDERS
+        else:
+            if (i == 1 and line[0] in self.lowerCaseLetters()) or line[0] in self.upperCaseLetters():
+                return True
+            else:
+                return i == len(line) - 2 and line[len(line) - 1] in self.lowerCaseLetters()
+
+
     cpdef list split(self, str line):
         """
         The split method takes a String line as an input. Firstly it creates a new sentence as currentSentence a new
@@ -347,7 +360,9 @@ cdef class SentenceSplitter:
         sentences = []
         while i < len(line):
             if line[i] in SentenceSplitter.SEPARATORS:
-                if line[i] in SentenceSplitter.APOSTROPHES and current_word != "" and self.__isApostrophe(line, i):
+                if line[i] in SentenceSplitter.HYPHENS and self.__onlyOneLetterExistsBeforeOrAfter(line, i):
+                    current_word = current_word + line[i]
+                elif line[i] in SentenceSplitter.APOSTROPHES and current_word != "" and self.__isApostrophe(line, i):
                     current_word = current_word + line[i]
                 else:
                     if current_word != "":

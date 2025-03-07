@@ -4,6 +4,7 @@ cdef class SentenceSplitter:
     cpdef str lowerCaseLetters(self)
     cpdef list shortCuts(self)
     cpdef bint __listContains(self, str currentWord)
+    cpdef bint __onlyOneLetterExistsBeforeOrAfter(self, str line, int i)
     cpdef bint __isNextCharUpperCaseOrDigit(self, str line, int i)
     cpdef bint __isPreviousWordUpperCase(self, str line, int i)
     cpdef bint __isNextCharUpperCase(self, str line, int i)
