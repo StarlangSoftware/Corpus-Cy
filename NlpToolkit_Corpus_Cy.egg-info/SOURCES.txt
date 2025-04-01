@@ -40,3 +40,8 @@ NlpToolkit_Corpus_Cy.egg-info/SOURCES.txt
 NlpToolkit_Corpus_Cy.egg-info/dependency_links.txt
 NlpToolkit_Corpus_Cy.egg-info/requires.txt
 NlpToolkit_Corpus_Cy.egg-info/top_level.txt
+nlptoolkit_corpus_cy.egg-info/PKG-INFO
+nlptoolkit_corpus_cy.egg-info/SOURCES.txt
+nlptoolkit_corpus_cy.egg-info/dependency_links.txt
+nlptoolkit_corpus_cy.egg-info/requires.txt
+nlptoolkit_corpus_cy.egg-info/top_level.txt
